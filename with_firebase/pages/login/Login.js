@@ -5,7 +5,6 @@ import styles from './Login.style';
 import auth from '@react-native-firebase/auth';
 import { showMessage } from "react-native-flash-message";
 import authErrorMessageParser from '../../utils/authErrorMessageParser';
-
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
@@ -16,22 +15,25 @@ const initialFromValues = {
 
 const Login = ({navigation}) => {
     const [loading, setLoading] = useState(false);
-    function handleSignUp() {
+    const handleSignUp = () => {
         navigation.navigate('register');
     }
 
-    async function handleFormSubmit(formValues) {
+    const handleFormSubmit = async (formValues) => {
         try {
             setLoading(true);
             await auth().signInWithEmailAndPassword(
                 formValues.usermail, 
                 formValues.password);
             setLoading(false);
+            console.log("oldu")
+            navigation.navigate('home')
         } catch (error) {
             showMessage({
                 message: authErrorMessageParser(error.code),
                 type: "warning",
               });
+              console.log("yok")
             setLoading(false);
         }
     }

@@ -3,7 +3,7 @@ import { SafeAreaView, View, Text } from "react-native";
 import {Formik} from 'formik';
 import styles from './Register.style';
 import auth from '@react-native-firebase/auth';
-import error1 from '../../utils/authErrorMessageParser'
+import authErrorMessageParser from '../../utils/authErrorMessageParser'
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
@@ -19,21 +19,28 @@ const Register = ({navigation}) => {
         navigation.goBack();
     }
 
-    async function handleFormSubmit(formValues) {
+    const handleFormSubmit = async formValues => {
         if(formValues.password !== formValues.repassword) {
-            alert('Şifreler uyuşmuyor')
+            showMessage({
+                message: 'Şifreler uyuşmuyor...',
+                type: 'danger',
+              });
             return;
         }
         try {
+            setLoading(true)
             await auth().createUserWithEmailAndPassword(
                 formValues.usermail, 
                 formValues.password);
+                setLoading(false);
                 alert('Hesap başarıyla oluşturuldu')
             navigation.navigate('login');
+        } catch (error) {
             setLoading(false);
-        } catch (error1) {
-            setLoading(false);
-            alert('Hesap oluşturulamadı')
+            showMessage({
+              message: authErrorMessageParser(error.code),
+              type: 'danger',
+            });
         }
     }
 
@@ -46,17 +53,20 @@ const Register = ({navigation}) => {
                 <Input
                 onType={handleChange('usermail')}
                 value={values.usermail} 
-                placeholder="e-postanızı giriniz.."/>
+                placeholder="e-postanızı giriniz.."
+                iconName="at"/>
                 <Input
                 onType={handleChange('password')}
                 value={values.password} 
                 placeholder="şifrenizi giriniz.." 
-                isSecure/>
+                isSecure
+                iconName="key"/>
                 <Input
                 onType={handleChange('repassword')}
                 value={values.repassword} 
                 placeholder="şifrenizi tekrar giriniz.."
-                isSecure />
+                isSecure 
+                iconName="key"/>
                 <Button 
                 text="Kayıt Ol" 
                 theme="secondary" 
@@ -68,7 +78,7 @@ const Register = ({navigation}) => {
               </>
             )}
             </Formik>
-            <Button text="Giriş Yap" theme="primary" onPress={handleLogin}/>
+            <Button text="Giriş Yap" theme="primary" loading={loading} onPress={handleLogin}/>
         </SafeAreaView>
     )
 };

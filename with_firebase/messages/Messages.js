@@ -1,20 +1,18 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import { SafeAreaView, FlatList } from "react-native";
 import FloatingButton from "../../components/FloatingButton";
 import ContentInputModal from "../../components/modal/ContentInputModal";
 import MessageCard from "../../components/card/MessageCard";
-
 import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
-
 import styles from './Messages.style';
 import parseContentData from "../../utils/parseContentData";
 
 const Messages = () => {
-    const [inputModalVisible, setInputModalVisible] = React.useState(false);
-    const [contentList, setContentList] = React.useState([]);
+    const [inputModalVisible, setInputModalVisible] = useState(false);
+    const [contentList, setContentList] = useState([]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         database()
         .ref('messages/')
         .on('value', snapshot => {
@@ -25,18 +23,17 @@ const Messages = () => {
           });
     }, [])
 
-    function handleInputToggle() {
+    const handleInputToggle = () => {
         setInputModalVisible(!inputModalVisible);
     }
 
-    function handleSendContent(content) {
+    const handleSendContent = (content) => {
         handleInputToggle();
         sendContent(content);
     }
 
-    function sendContent(content) {
+    const sendContent = (content) => {
         const userMail = auth().currentUser.email
-
         const contentObject = {
             text: content,
             username: userMail.split('@')[0],
@@ -46,7 +43,7 @@ const Messages = () => {
         database().ref('messages/').push(contentObject);
     }
 
-    function handleBanane(item) {
+    const handleBanane = (item) => {
         database()
         .ref(`messages/${item.id}/`)
         .update({dislike: item.dislike + 1});

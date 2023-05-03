@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import styles from './MessageCard.style';
 import {tr} from 'date-fns/locale'
 import {formatDistance, parseISO} from 'date-fns';
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+// import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const MessageCard = ({message, onBanane}) => {
     const formattedDate = formatDistance(parseISO(message.date), new Date(), { 
@@ -27,7 +27,7 @@ const MessageCard = ({message, onBanane}) => {
                 </View>
                 )}
                 <Text style={styles.dislike_text}>bana ne</Text>
-                <Icon name="emoticon-sad" size={25} />
+                {/* <Icon name="emoticon-sad" size={25} /> */}
                 </TouchableOpacity>
             </View>
         </View>
