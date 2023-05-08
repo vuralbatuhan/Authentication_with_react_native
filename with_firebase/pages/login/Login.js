@@ -9,8 +9,8 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 
 const initialFormValues = {
-    usermail: 'denemebu@mail.com',
-    password: 'denemebu',
+    usermail: '',
+    password: '',
 }
 
 const Login = (props) => {
@@ -26,8 +26,8 @@ const Login = (props) => {
                 formValues.usermail, 
                 formValues.password);
             setLoading(false);
-            console.log("oldu")
-            props.navigation.navigate('home', {usermail: formValues.usermail});
+            // console.log("oldu")
+            props.navigation.navigate('home2');
         } catch (error) {
             showMessage({
                 message: authErrorMessageParser(error.code),

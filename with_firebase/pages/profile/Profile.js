@@ -9,24 +9,23 @@ import { Button } from '@rneui/themed';
 
 const Profile = (props) => {
     const [data, setData] = useState('')
-    // useEffect(()=>{
-    //     const newData = setData(newData)
-    // },[data])
-    const saveInfos = () => {
-        props.navigation.navigate('home',{ usermail: data} )
-        console.log(data)
+    const [data2, setData2] = useState('')
+    const [data3, setData3] = useState('')
 
+    const saveInfos = () => {
+        props.navigation.navigate('home',{ name: data, companyName: data2, surname: data3} )
+        console.log(data)
     }
     return(
         <SafeAreaView style = {styles.container}>
             <Text style = {styles.text}>
                 NAME : 
             </Text>
-            <TextInput value={data} onChangeText={(e) => setData(e)} style = {styles.textInput}/>
+            <TextInput value={data} onChangeText={(e) => setData(e.toUpperCase())} style = {styles.textInput}/>
             <Text style = {styles.text}>
                 SURNAME : 
             </Text>
-            <TextInput style = {styles.textInput}/>
+            <TextInput value={data3} onChangeText={(e) => setData3(e.toUpperCase())} style = {styles.textInput}/>
             <Text style = {styles.text}>
                 AGE : 
             </Text>
@@ -34,7 +33,7 @@ const Profile = (props) => {
             <Text style = {styles.text}>
                 COMPANY NAME : 
             </Text>
-            <TextInput style = {styles.textInput}/>  
+            <TextInput value={data2.toLocaleUpperCase()} onChangeText={(e) => setData2(e.toUpperCase())}  style = {styles.textInput}/>  
             <Button color="secondary" containerStyle={{marginTop : 20, borderRadius : 5}} onPress={saveInfos}>SAVE</Button>
             {/* <Text style = {styles.text}>
                 NAME : 

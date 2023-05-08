@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create ( {
     text : {
-        marginTop : 20,
+        marginTop : 30,
         fontSize : 50,
         color : 'black',
         flexDirection : 'row',
@@ -19,10 +19,11 @@ export default StyleSheet.create ( {
     touchableO : {
         fontSize : 20,
         textAlign : 'center',
-        marginTop : 20,
+        marginTop : 25,
         backgroundColor : 'white',
         borderRadius :10,
         width : 160,
+        marginBottom :35
     },
     touchable1 : {
         flexDirection : 'column',

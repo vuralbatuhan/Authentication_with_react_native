@@ -5,7 +5,9 @@ import is from "../../components/Image/is.jpg"
 import isara from "../../components/Image/isara.jpg"
 import { Button } from "@rneui/themed";
 function Home (props) {
-    const {usermail} = props.route.params;
+    const {name} = props.route.params
+    const {companyName} = props.route.params
+    const {surname} = props.route.params
     const editProfile = () => {
         props.navigation.navigate('profile')
     }
@@ -13,12 +15,12 @@ function Home (props) {
         props.navigation.navigate('employee')
     }
     const goEmployeer = () => {
-        props.navigation.navigate('employeer')
+        props.navigation.navigate('employeer', {companyName})
     }
 return (
-    <SafeAreaView style={{backgroundColor : '#15c083', flex : 1}}>
+    <SafeAreaView style={{backgroundColor : 'rgba(127, 220, 103, 1)', flex : 1}}>
         <Text style={styles.text}>WELCOME</Text>
-        <Text style={styles.text2}>{usermail}</Text>
+        <Text style={styles.text2}>{name}  {surname}</Text>
         <Image source={{
           uri: 'https://reactnative.dev/img/tiny_logo.png',
         }}/>
