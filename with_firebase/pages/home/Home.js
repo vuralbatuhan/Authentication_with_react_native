@@ -1,102 +1,41 @@
-// import React, {useState} from "react";
-// import { SafeAreaView, View, Text } from "react-native";
-// import {Formik} from 'formik';
-// import styles from './Register.style';
-// import auth from '@react-native-firebase/auth';
-// import authErrorMessageParser from '../../utils/authErrorMessageParser'
-// import Input from '../../components/Input';
-// import Button from '../../components/Button';
-
-// const initialFromValues = {
-//     usermail: '',
-//     password: '',
-//     repassword: '',
-// }
-
-// const Home = ({navigation}) => {
-//     const [loading, setLoading] = useState(false);
-//     function handleLogin() {
-//         navigation.goBack();
-//     }
-
-//     const handleFormSubmit = async formValues => {
-//         if(formValues.password !== formValues.repassword) {
-//             showMessage({
-//                 message: 'Şifreler uyuşmuyor...',
-//                 type: 'danger',
-//               });
-//             return;
-//         }
-//         try {
-//             setLoading(true)
-//             await auth().createUserWithEmailAndPassword(
-//                 formValues.usermail, 
-//                 formValues.password);
-//                 setLoading(false);
-//                 alert('Hesap başarıyla oluşturuldu')
-//             navigation.navigate('login');
-//         } catch (error) {
-//             setLoading(false);
-//             showMessage({
-//               message: authErrorMessageParser(error.code),
-//               type: 'danger',
-//             });
-//         }
-//     }
-
-//     return(
-//         <SafeAreaView style={styles.container}>
-//             <Text style={styles.header}>Kayıt Olma Ekranı</Text>
-//             <Formik initialValues={initialFromValues} onSubmit={handleFormSubmit}>
-//             {({values, handleChange, handleSubmit}) => (
-//               <>
-//                 <Input
-//                 onType={handleChange('usermail')}
-//                 value={values.usermail} 
-//                 placeholder="e-postanızı giriniz.."
-//                 iconName="at"/>
-//                 <Input
-//                 onType={handleChange('password')}
-//                 value={values.password} 
-//                 placeholder="şifrenizi giriniz.." 
-//                 isSecure
-//                 iconName="key"/>
-//                 <Input
-//                 onType={handleChange('repassword')}
-//                 value={values.repassword} 
-//                 placeholder="şifrenizi tekrar giriniz.."
-//                 isSecure 
-//                 iconName="key"/>
-//                 <Button 
-//                 text="Kayıt Ol" 
-//                 theme="secondary" 
-//                 loading={loading} 
-//                 onPress={handleSubmit}/>
-//                 <Text style={styles.text}>
-//                     Zaten üye misiniz?
-//                 </Text>
-//               </>
-//             )}
-//             </Formik>
-//             <Button text="Giriş Yap" theme="primary" loading={loading} onPress={handleLogin}/>
-//         </SafeAreaView>
-//     )
-// };
-
-// export default Home;
-
 import React, {useState} from "react";
-import { SafeAreaView, Text } from "react-native";
-import Button from "../../components/Button/Button";
+import { SafeAreaView, Text, TouchableOpacity,Image,View } from "react-native";
 import styles from "./Home.style"
-
-const Home = ({navigation}) => {
-    const handleLogin = () =>{
-        navigation.navigate('register')
+import is from "../../components/Image/is.jpg"
+import isara from "../../components/Image/isara.jpg"
+import { Button } from "@rneui/themed";
+function Home (props) {
+    const {usermail} = props.route.params;
+    const editProfile = () => {
+        props.navigation.navigate('profile')
+    }
+    const goEmployee = () => {
+        props.navigation.navigate('employee')
+    }
+    const goEmployeer = () => {
+        props.navigation.navigate('employeer')
     }
 return (
-    <SafeAreaView>
+    <SafeAreaView style={{backgroundColor : '#15c083', flex : 1}}>
         <Text style={styles.text}>WELCOME</Text>
+        <Text style={styles.text2}>{usermail}</Text>
+        <Image source={{
+          uri: 'https://reactnative.dev/img/tiny_logo.png',
+        }}/>
+        <TouchableOpacity style={styles.touchable1} onPress={editProfile}>
+        <Text style={styles.touchableO}>EDİT PROFİLE</Text>
+        </TouchableOpacity>
+        <View style={styles.underContainer}>
+        <View style={styles.underView}>
+        <Image style={styles.image} source={is}/>
+        <Button containerStyle={{borderRadius : 8, marginTop : 20, width : 120}} onPress={goEmployeer}>EMPLOYEER</Button>
+        </View>
+        <View style={styles.underView}>
+        <Image style={styles.image} source={isara}/>
+        <Button containerStyle={{borderRadius : 8, marginTop : 20, width : 120}} onPress={goEmployee}>EMPLOYEE</Button>
+        </View>
+        </View>
+        
     </SafeAreaView>
 )
 }

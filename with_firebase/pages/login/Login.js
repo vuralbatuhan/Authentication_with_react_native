@@ -8,15 +8,15 @@ import authErrorMessageParser from '../../utils/authErrorMessageParser';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
-const initialFromValues = {
-    usermail: '',
-    password: '',
+const initialFormValues = {
+    usermail: 'denemebu@mail.com',
+    password: 'denemebu',
 }
 
-const Login = ({navigation}) => {
+const Login = (props) => {
     const [loading, setLoading] = useState(false);
     const handleSignUp = () => {
-        navigation.navigate('register');
+        props.navigation.navigate('register');
     }
 
     const handleFormSubmit = async (formValues) => {
@@ -27,7 +27,7 @@ const Login = ({navigation}) => {
                 formValues.password);
             setLoading(false);
             console.log("oldu")
-            navigation.navigate('home')
+            props.navigation.navigate('home', {usermail: formValues.usermail});
         } catch (error) {
             showMessage({
                 message: authErrorMessageParser(error.code),
@@ -40,9 +40,10 @@ const Login = ({navigation}) => {
     return(
         <SafeAreaView style={styles.container}>
             <Text style={styles.header}>Giriş Ekranı</Text>
-            <Formik initialValues={initialFromValues} onSubmit={handleFormSubmit}>
+            <Formik initialValues={initialFormValues} onSubmit={handleFormSubmit}>
             {({values, handleChange, handleSubmit}) => (
               <>
+                {/* <Home usermail={values.usermail}/> */}
                 <Input
                 onType={handleChange('usermail')}
                 value={values.usermail} 
