@@ -1,7 +1,6 @@
 import React from 'react';
 import { SafeAreaView,Text,TouchableOpacity,ImageBackground} from 'react-native';
 import styles from "./Home2.style";
-import art from "../../components/Image/art.jpg";
 import art2 from "../../components/Image/art2.jpg";
 
 function Home2 (props) {

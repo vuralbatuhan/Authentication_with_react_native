@@ -1,13 +1,15 @@
-import React, {useState} from "react";
+import React from "react";
 import { SafeAreaView, Text, TouchableOpacity,Image,View } from "react-native";
 import styles from "./Home.style"
 import is from "../../components/Image/is.jpg"
 import isara from "../../components/Image/isara.jpg"
 import { Button } from "@rneui/themed";
 function Home (props) {
-    const {name} = props.route.params
     const {companyName} = props.route.params
+    const {name} = props.route.params
     const {surname} = props.route.params
+    const {Job} = props.route.params
+    const {Job_Criteria} = props.route.params
     const editProfile = () => {
         props.navigation.navigate('profile')
     }
@@ -15,12 +17,16 @@ function Home (props) {
         props.navigation.navigate('employee')
     }
     const goEmployeer = () => {
-        props.navigation.navigate('employeer', {companyName})
+        props.navigation.navigate('employeer', {companyName,name,surname})
+    }
+    const goMyPosts = () => {
+        props.navigation.navigate('myPosts',{companyName,name,surname,Job,Job_Criteria})
     }
 return (
     <SafeAreaView style={{backgroundColor : 'rgba(127, 220, 103, 1)', flex : 1}}>
+        <Button onPress={goMyPosts}>MY POSTS</Button>
         <Text style={styles.text}>WELCOME</Text>
-        <Text style={styles.text2}>{name}  {surname}</Text>
+        <Text style={styles.text2}>{name.toUpperCase()}  {surname.toUpperCase()}</Text>
         <Image source={{
           uri: 'https://reactnative.dev/img/tiny_logo.png',
         }}/>

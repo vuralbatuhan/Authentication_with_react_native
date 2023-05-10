@@ -1,10 +1,8 @@
 import { StyleSheet } from "react-native";
-import art from "../../components/Image/art.jpg";
 
 
 export default StyleSheet.create({
     container : {
-        // backgroundColor :'rgba(127, 220, 103, 1)', 
         flex : 1
     },
     text : {

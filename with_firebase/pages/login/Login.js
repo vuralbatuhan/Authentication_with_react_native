@@ -9,8 +9,8 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 
 const initialFormValues = {
-    usermail: '',
-    password: '',
+    usermail: 'denemebu@mail.com',
+    password: 'denemebu',
 }
 
 const Login = (props) => {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {SafeAreaView, Text, Button, StyleSheet, TextInput, View} from 'react-native';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import login from './pages/login/Login';
@@ -9,8 +9,7 @@ import home2 from './pages/home2/Home2';
 import profile from './pages/profile/Profile';
 import employee from './pages/employee/Employee';
 import employeer from './pages/employeer/Employeer';
-
-
+import myPosts from './pages/myPosts/MyPosts'
 const Stack = createNativeStackNavigator();
 
 function App(){
@@ -26,14 +25,10 @@ function App(){
         <Stack.Screen name="profile" component={profile}/>
         <Stack.Screen name="employee" component={employee}/>
         <Stack.Screen name="employeer" component={employeer}/>
+        <Stack.Screen name="myPosts" component={myPosts}/>
       </Stack.Navigator>
     </NavigationContainer>
     )
-    // return(
-    //   <NavigationContainer>
-    //     <Stack.Screen/>
-    //   </NavigationContainer>
-    // )
 }
 
 const styles = StyleSheet.create({
