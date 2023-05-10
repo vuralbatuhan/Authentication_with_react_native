@@ -14,12 +14,13 @@ function Employeer(props) {
         Company_Name: companyName,
         Job: jobData,
         Job_Criteria: jobData2,
+
     }
 
     const usersRef = firestore().collection('Users');
     const addUser = async () => {
         await usersRef.add(user);
-        props.navigation.navigate('home',{name,surname,companyName,Job,Job_Criteria})
+        props.navigation.navigate('home',{name,surname,companyName,jobData,jobData2})
     }
     return(
     <SafeAreaView style={styles.container}>

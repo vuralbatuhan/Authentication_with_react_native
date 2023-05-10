@@ -11,9 +11,11 @@ function Employee() {
         const users =[];
         const snapshot = await usersRef.get();
         snapshot.forEach((doc) => {
-        users.push(({...doc.data()}));   
+        users.push(({...doc.data()}));
+        users.push(doc.id)   
         });
         setUserData(users)
+        console.log(users)
       };
 
       getData()
@@ -25,11 +27,12 @@ function Employee() {
         renderItem={d => (
           <View style={{ borderWidth: 1 }}>
             <Card>
-          <Card.Title>{d.item.Company_Name.toUpperCase()}</Card.Title>
+          <Card.Title>{d.item.Company_Name}</Card.Title>
           <Card.Divider style={{borderWidth: 1 }} />
           <Text style={{ marginBottom: 10 }}>
-            {d.item.Job.toUpperCase()}
-          </Text>
+            {d.item.Job}
+            {d.id}
+            </Text>
           <Card.Image
             style={{ padding: 0 }}
             source={{
@@ -38,7 +41,7 @@ function Employee() {
             }}
           />
           <Text style={{ marginBottom: 10 }}>
-            {d.item.Job_Criteria.toUpperCase()}
+            {d.item.Job_Criteria}
           </Text>
           <Button
             buttonStyle={{

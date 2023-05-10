@@ -9,7 +9,6 @@ import home2 from './pages/home2/Home2';
 import profile from './pages/profile/Profile';
 import employee from './pages/employee/Employee';
 import employeer from './pages/employeer/Employeer';
-import myPosts from './pages/myPosts/MyPosts'
 const Stack = createNativeStackNavigator();
 
 function App(){
@@ -25,7 +24,6 @@ function App(){
         <Stack.Screen name="profile" component={profile}/>
         <Stack.Screen name="employee" component={employee}/>
         <Stack.Screen name="employeer" component={employeer}/>
-        <Stack.Screen name="myPosts" component={myPosts}/>
       </Stack.Navigator>
     </NavigationContainer>
     )

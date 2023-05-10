@@ -8,8 +8,8 @@ function Home (props) {
     const {companyName} = props.route.params
     const {name} = props.route.params
     const {surname} = props.route.params
-    const {Job} = props.route.params
-    const {Job_Criteria} = props.route.params
+    const {jobData} = props.route.params
+    const {jobData2} = props.route.params
     const editProfile = () => {
         props.navigation.navigate('profile')
     }
@@ -19,12 +19,8 @@ function Home (props) {
     const goEmployeer = () => {
         props.navigation.navigate('employeer', {companyName,name,surname})
     }
-    const goMyPosts = () => {
-        props.navigation.navigate('myPosts',{companyName,name,surname,Job,Job_Criteria})
-    }
 return (
     <SafeAreaView style={{backgroundColor : 'rgba(127, 220, 103, 1)', flex : 1}}>
-        <Button onPress={goMyPosts}>MY POSTS</Button>
         <Text style={styles.text}>WELCOME</Text>
         <Text style={styles.text2}>{name.toUpperCase()}  {surname.toUpperCase()}</Text>
         <Image source={{
